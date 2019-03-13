@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Main from './components/Main';
+import TodoItem from './components/TodoItem'
+import todosData from './todosData'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      todos: todosData
+    }
+  }
   render() {
+    const todos = this.state.todos.map(
+      item => <TodoItem key={item.id} item={item} />
+    )
     return (
-      <div>
-        <Header />
-        <Main />
-        <Footer />
+      <div className="todo-list">
+
+        {todos}
+
       </div>
     );
   }
