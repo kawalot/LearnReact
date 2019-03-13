@@ -1,9 +1,10 @@
 import React from "react";
+import "./Footer.css"
 
 function Footer() {
     return (
-        <footer>
-            <h3><font color="#3AC1EF">This is my footer element</font></h3>
+        <footer className="footer">
+            <h3>This is my footer element</h3>
         </footer>
     )
 };

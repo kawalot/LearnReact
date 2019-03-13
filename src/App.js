@@ -3,14 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import MainContent from './components/MainContent';
+import Main from './components/Main';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Header />
-        <MainContent />
+        <Main />
         <Footer />
       </div>
     );
