@@ -5,35 +5,31 @@ import TodoItem from './components/TodoItem'
 import todosData from './todosData'
 
 
-import Conditional from "./components/Conditional"
-
 class App extends Component {
-    constructor() {
+    constructor(){
         super()
         this.state = {
-            isLoading: true
+            isLoggedIn: false
         }
+        this.handleLogin = this.handleLogin.bind(this)
     }
-    
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                isLoading: false
-            })
-        }, 1500)
+    handleLogin(){
+        this.setState(prevState => {
+            return {isLoggedIn: !prevState.isLoggedIn}
+        })
+        // this.setState({isLoggedIn: !this.state.isLoggedIn})
     }
-    
+
     render() {
+        const logged = this.state.isLoggedIn ? "in" : "out"
         return (
             <div>
-              {this.state.isLoading ?
-              <h1>Loading...</h1> :
-              <Conditional />}
+                <h1>Logged {logged}</h1>
+                <button onClick={this.handleLogin}>logged {logged}</button>
             </div>
         )
     }
 }
-
 
 
 // class App extends Component {
