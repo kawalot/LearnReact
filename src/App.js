@@ -4,33 +4,36 @@ import './App.css';
 import TodoItem from './components/TodoItem'
 import todosData from './todosData'
 
-
 class App extends Component {
-    constructor(){
-        super()
-        this.state = {
-            isLoggedIn: false
-        }
-        this.handleLogin = this.handleLogin.bind(this)
-    }
-    handleLogin(){
-        this.setState(prevState => {
-            return {isLoggedIn: !prevState.isLoggedIn}
+  constructor() {
+      super()
+      this.state = {
+          loading: false,
+          character: {}
+      }
+  }
+
+  componentDidMount() {
+    this.setState({loading: true})
+    fetch("https://swapi.co/api/people/1")
+        .then(response => response.json())
+        .then(data => {
+            this.setState({
+                character: data,
+                loading: false
+            })
         })
-        // this.setState({isLoggedIn: !this.state.isLoggedIn})
-    }
+  }
 
-    render() {
-        const logged = this.state.isLoggedIn ? "in" : "out"
-        return (
-            <div>
-                <h1>Logged {logged}</h1>
-                <button onClick={this.handleLogin}>logged {logged}</button>
-            </div>
-        )
-    }
+  render() {
+      const text = this.state.loading ? "Loading..." : this.state.character.name
+      return (
+          <div>
+              <p>{text}</p>
+          </div>
+      )
+  }
 }
-
 
 // class App extends Component {
 //   constructor() {
